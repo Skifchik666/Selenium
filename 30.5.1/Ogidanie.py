@@ -63,7 +63,7 @@ def test_show_my_pets():
    # Проверяем, что мы оказались на  странице пользователя, ожидая, что в течение 10с на странице есть тег h2 с тименем пользователя "Vasya"
    assert wait.until(EC.text_to_be_present_in_element((By.TAG_NAME, 'h2'), 'Vasya'))
 
-   # Ищем в теле таблицы все строки с полными данными питомцев (имя, порода, возраст):
+   # Ищем в таблице все строки с полными данными питомцев (имя, порода, возраст):
    css_locator = 'tbody>tr'
    data_my_pets = pytest.driver.find_elements(By.CSS_SELECTOR, css_locator)
 
@@ -71,7 +71,7 @@ def test_show_my_pets():
    for i in range(len(data_my_pets)):
       assert wait.until(EC.visibility_of(data_my_pets[i]))
 
-   # Ищем в таблицt все фотографии питомцев, ожидаея, что все загруженные фото, видны на странице:
+   # Ищем в таблице все фотографии питомцев, ожидаея, что все загруженные фото, видны на странице:
    image_my_pets = pytest.driver.find_elements(By.CSS_SELECTOR, 'img[style="max-width: 100px; max-height: 100px;"]')
    for i in range(len(image_my_pets)):
       if image_my_pets[i].get_attribute('src') != '':
